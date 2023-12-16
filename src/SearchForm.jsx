@@ -8,9 +8,10 @@ const SearchForm = () => {
     e.preventDefault();
     const searchInput = e.target.elements.search.value
     if (!searchInput) return
-    setSearchTerm(searchInput)
+    setSearchTerm(searchInput);
+    // setSearchTerm('');
   }
-  
+
   return (
     <main>
       <h2 className="title">Unsplash images</h2>

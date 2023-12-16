@@ -62,7 +62,8 @@ html {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   /* dark mode setup */
   --dark-mode-bg-color:#333;
-  --dark-mode-text-color:#f0f0f0;
+  --dark-icon-color:#f0f0f0;
+  --dark-mode-text-color:#000000;
   --background-color:var(--grey-50);
   --texxtColor:var(var(--grey-900));
 }
@@ -70,6 +71,11 @@ html {
   --textColor:var(--dark-mode-text-color);
   --background-color:var(--dark-mode-bg-color);
 }
+
+.dark-theme .dark-icon {
+ --textColor:var(--dark-icon-color);
+}
+
 body {
   background-color: var(--background-color);
   color:var(--textColor);

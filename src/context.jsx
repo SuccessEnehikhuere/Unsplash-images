@@ -1,20 +1,30 @@
-import { Children, createContext, useContext, useState } from "react"
+import { Children, createContext, useContext, useEffect, useState } from "react"
 
 
 
 const AppContext = createContext();
 
+const getDarkTheme = ()=>{
+  const prefersDarkTheme = window.matchMedia('(prefers-color-scheme:dark)').matches
+  const storeDarkTheme = localStorage.getItem('dark-theme') === 'true'
+  return storeDarkTheme || prefersDarkTheme;
+}
+
+
 export const AppProvider = ({children})=>{
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(getDarkTheme());
   const [searchTerm, setSearchTerm] = useState('dog');
 
   const toggleDarkTheme = ()=>{
     const newDarkTheme = !isDarkTheme;
-    setIsDarkTheme(newDarkTheme)
-    const body = document.querySelector('body')
-    body.classList.toggle('dark-theme', newDarkTheme)
-    console.log(body);
+    setIsDarkTheme(newDarkTheme);
+    localStorage.setItem('dark-theme', newDarkTheme)
   }
+
+  useEffect(()=>{
+    document.body.classList.toggle('dark-theme', isDarkTheme)
+  }, [isDarkTheme])
+
 return(
   <AppContext.Provider value={{isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm}}>
     {children}

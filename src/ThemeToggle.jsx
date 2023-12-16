@@ -13,7 +13,7 @@ const ThemeToggle = () => {
     <main className="toggle-container">
       <button onClick={toggleDarkTheme} className="dark-toggle">
         {isDarkTheme ? (
-          <BsMoonFill className="toggle-icon" />
+          <BsMoonFill className="toggle-icon dark-icon" />
         ) : (
           <BsSunFill className="toggle-icon" />
         )}
