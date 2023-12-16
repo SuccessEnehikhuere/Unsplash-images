@@ -5,18 +5,18 @@ import axios from 'axios'
 
 const url = `https://api.unsplash.com/search/photos?client_id=${
   import.meta.env.VITE_API_KEY
-}&query=girl`
+}`
 
 
-console.log(import.meta.env.VITE_API_KEY);
+
 
 function Gallery() {
   const { searchTerm } = useGlobalContext()
 
   const response = useQuery({
-    queryKey: ['images'],
+    queryKey: ['images', searchTerm],
     queryFn: async () => {
-      const result = await axios.get(url)
+      const result = await axios.get(`${url}&query=${searchTerm}`)
 
       return result.data
     },
